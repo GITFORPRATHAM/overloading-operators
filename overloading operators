@@ -1,0 +1,47 @@
+#include <iostream>
+
+// Forward declaration of the MyClass class
+class MyClass;
+
+// Friend function declaration for operator overloading
+MyClass operator+(const MyClass& obj1, const MyClass& obj2);
+
+// MyClass class declaration
+class MyClass {
+private:
+    int data;
+
+public:
+    // Constructor
+    MyClass(int value) : data(value) {}
+
+    // Getter function for data
+    int getData() const {
+        return data;
+    }
+
+    // Friend declaration for the operator+ function
+    friend MyClass operator+(const MyClass& obj1, const MyClass& obj2);
+};
+
+// Definition of the operator+ function using friend
+MyClass operator+(const MyClass& obj1, const MyClass& obj2) {
+    int sum = obj1.data + obj2.data;
+    return MyClass(sum);
+}
+
+int main() {
+    // Creating objects of MyClass
+    MyClass obj1(5);
+    MyClass obj2(10);
+
+    // Using the overloaded + operator
+    MyClass result = obj1 + obj2;
+
+    // Displaying the result
+    std::cout << "Sum: " << result.getData() << std::endl;
+
+    return 0;
+}
+
+
